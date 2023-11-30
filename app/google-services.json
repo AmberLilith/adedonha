@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "580854260706",
+    "firebase_url": "https://adedonha-da791-default-rtdb.firebaseio.com",
+    "project_id": "adedonha-da791",
+    "storage_bucket": "adedonha-da791.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:580854260706:android:bf8b4ae8cd23e675c90fbb",
+        "android_client_info": {
+          "package_name": "com.br.amber.adedonha"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvZ5TfIWfpKotAXqAVvNitO03WkHzwqIs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
