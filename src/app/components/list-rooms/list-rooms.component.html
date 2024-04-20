@@ -1,0 +1,7 @@
+<button class="btn btn-primary mt-2">Criar Sala</button>
+
+<div class="mural">
+    @for (room of rooms; track room; let idx = $index) {
+    <app-room [room]="room" [roomIndex]=idx></app-room>
+    }
+</div>
