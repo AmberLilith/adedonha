@@ -17,9 +17,17 @@ export class Room {
 
     setDefaultPlayersList(categoriesNames: string[]): Player[] {
         const playersList: Player[] = []
-        for (const category in categoriesNames) {
+        for (let i = 0; i < this.playersQuantity; i++) {
             playersList.push(new Player("", categoriesNames, 0))
         }
         return playersList
     }
+
+    /* setDefaultPlayersList(categoriesNames: string[]): Player[] {
+        const playersList: Player[] = []
+        for (const category in categoriesNames) {
+            playersList.push(new Player("", categoriesNames, 0))
+        }
+        return playersList
+    } */
 }

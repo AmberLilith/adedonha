@@ -1,7 +1,7 @@
-<button class="btn btn-primary mt-2">Criar Sala</button>
+<button class="btn btn-primary mt-2" [routerLink]="['/create']">Criar Sala</button>
 
 <div class="mural">
     @for (room of rooms; track room; let idx = $index) {
-    <app-room [room]="room" [roomIndex]=idx></app-room>
+    <app-room-list-item [room]="room" [roomIndex]=idx></app-room-list-item>
     }
 </div>

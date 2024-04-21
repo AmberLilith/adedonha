@@ -1,1 +1,73 @@
-<p>create-room works!</p>
+<form [formGroup]="form" (ngSubmit)="createRoom()">
+    <div class="form-floating mt-3 mb-3">
+        <input type="text" class="form-control" id="userName" name="userName" formControlName="userName">
+        <label for="floatingInput">Nome</label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <select class="form-select" id="selectPlayersQuantity" name="selectPlayersQuantity"
+            formControlName="selectPlayersQuantity" aria-label="Selecionar quantidade de jogadores">
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+        </select>
+        <label for="floatingSelect">Selecione a quantidade de jogadores</label>
+    </div>
+
+    <div class="form-floating">
+        <select class="form-select" id="selectRoundsQuantity" name="selectRoundsQuantity"
+            formControlName="selectRoundsQuantity" aria-label="Selecionar quantidade de rodadas">
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="8">8</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+        </select>
+        <label for="floatingSelect">Selecione a quantidade de rodadas</label>
+    </div>
+
+    <h3 class="mt-2">Categorias Adicionadas:</h3>
+    <div class="addedCategories" id="addedCategories">
+        @for (category of categoriesNames; track category) {
+        <div class="addedCategoryItem">
+            <button type="button" class="btn-close" aria-label="Close" (click)="deleteCategoryName(category)"></button>
+            {{category}}
+        </div>
+        }
+    </div>
+
+
+    <div class="input-group">
+        <input type="text" class="form-control" id="categoryName" name="categoryName" formControlName="categoryName"
+            placeholder="digite a categoria" aria-label="adicionar-categoria"
+            aria-describedby="botao-adicionar-categoria">
+        @if (!form.get("categoryName")?.invalid) {
+        <button class="btn btn-primary" type="button" id="addCategory" (click)="addCategoryName()">Incluir</button>
+        }
+        @else {
+        <button class="btn btn-primary" type="button" id="addCategory" disabled>Incluir</button>
+        }
+    </div>
+    @if(form.get("categoryName")?.errors?.["required"] && form.get("categoryName")?.touched){
+    <div style="color:rgb(167, 11, 11)">A categoria não pode ser em branco!</div>
+    }
+    <div class="row">
+        <div class="col-sm-12 col-lg-2 mt-3">
+            @if (!form.get('userName')?.invalid && !form.get('selectPlayersQuantity')?.invalid &&
+            !form.get('selectRoundsQuantity')?.invalid && categoriesNames.length >= 5) {
+            <button class="btn btn-primary" style="width: 100%;" type="submit">Criar Sala</button>
+            }
+            @else {
+            <button class="btn btn-primary" style="width: 100%;" disabled>Criar Sala</button>
+            }
+        </div>
+    </div>
+
+
+</form>

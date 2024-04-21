@@ -1,5 +1,5 @@
-import { Component, Input, input } from '@angular/core';
-import { GameManagerService } from '../../services/game-manager.service';
+import { Component } from '@angular/core';
+import { GameManagerService } from '../../services/gameManager/game-manager.service';
 import { Room } from '../../models/room/room';
 
 @Component({
@@ -8,10 +8,17 @@ import { Room } from '../../models/room/room';
   styleUrl: './room.component.css'
 })
 export class RoomComponent {
-  createdRoomKey = localStorage.getItem('createdRoomKey')
+  roomKey: string
+  room!: Room
 
-  @Input() room!: Room
-  @Input() roomIndex!: number
+  constructor(private gameManager: GameManagerService) {
+    this.roomKey = localStorage.getItem('createdRoomKey')!
+  }
 
-
+  ngOnInit() {
+    this.gameManager.getRoom(this.roomKey).subscribe(room => {
+      this.room = room
+      console.log(this.room)
+    })
+  }
 }

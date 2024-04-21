@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Category } from '../../models/category/category';
-import { GameManagerService } from '../../services/game-manager.service';
+import { GameManagerService } from '../../services/gameManager/game-manager.service';
 
 @Component({
   selector: 'app-category',

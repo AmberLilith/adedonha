@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { Room } from '../models/room/room';
+import { Room } from '../../models/room/room';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -10,9 +10,7 @@ export class GameManagerService {
   rooms = this.database.list("rooms")
   constructor(private database: AngularFireDatabase) { }
 
-  createRoom() {
-    const categoriesNames = ["Filmes", "Novela", "Frutas", "Cidade", "País"]
-    const room = new Room(5, 2, categoriesNames)
+  createRoom(room: Room) {
     const newRoomRef = this.rooms.push({
       currentRound: room.currentRound,
       drawnLetters: room.drawnLetters,
