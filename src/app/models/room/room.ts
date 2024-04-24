@@ -1,33 +1,23 @@
 import { Player } from "../player/player";
 
 export class Room {
+    key: string = ""
     roundsQuantity: number
-    currentRound: number = 1
     playersQuantity: number
-    drawnLetters: string[] = [""]
-    stop = { sent: false, sender: -1 }
     playersInTheRoom: number = 1
-    players: Player[]
+    currentRound: number = 1
+    playerOwner: string
+    categoriesNames: string[]
+    drawnLetters: string[] = [""]
+    players: Player[] = []
+    stop = { sent: false, sender: -1 }
 
-    constructor(roundsQuantity: number, playersQuantity: number, categoriesNames: string[]) {
+    constructor(roundsQuantity: number, playersQuantity: number, playerOwner: string, categoriesNames: string[]) {
         this.roundsQuantity = roundsQuantity
         this.playersQuantity = playersQuantity
-        this.players = this.setDefaultPlayersList(categoriesNames)
+        this.playerOwner = playerOwner
+        this.categoriesNames = categoriesNames
+        this.players.push(new Player(playerOwner, categoriesNames, 0, true))
     }
 
-    setDefaultPlayersList(categoriesNames: string[]): Player[] {
-        const playersList: Player[] = []
-        for (let i = 0; i < this.playersQuantity; i++) {
-            playersList.push(new Player("", categoriesNames, 0))
-        }
-        return playersList
-    }
-
-    /* setDefaultPlayersList(categoriesNames: string[]): Player[] {
-        const playersList: Player[] = []
-        for (const category in categoriesNames) {
-            playersList.push(new Player("", categoriesNames, 0))
-        }
-        return playersList
-    } */
 }

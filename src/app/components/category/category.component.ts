@@ -9,15 +9,9 @@ import { GameManagerService } from '../../services/gameManager/game-manager.serv
 })
 export class CategoryComponent {
   category!: Category
-  createdRoomKey = localStorage.getItem('createdRoomKey')
 
   constructor(private gameManager: GameManagerService) { }
 
   getCategory() {
-    if (this.createdRoomKey) {
-      this.gameManager.getRoom(this.createdRoomKey).subscribe(room => {
-        this.category = room.room.players[0].categories[1]
-      })
-    }
   }
 }

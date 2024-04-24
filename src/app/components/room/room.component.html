@@ -1,1 +1,21 @@
-<p>room works!</p>
+@if (room) {
+@if (this.room.playersInTheRoom < this.room.playersQuantity) { <div class="text-center mt-3" id="waitingPlayers">
+    <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+    <div>
+        Aguardando outros jogadores
+    </div>
+    <div>
+        {{"Faltam " + this.room.playersInTheRoom + " de " + this.room.playersQuantity}}
+    </div>
+    <button class="btn btn-danger" (click)="leaveRoom()">Sair</button>
+    </div>
+    }
+
+    @if(this.room.playersInTheRoom == this.room.playersQuantity){
+    <div id="game">
+        Aqui vai o codigo do game
+    </div>
+    }
+    }

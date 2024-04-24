@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { GameManagerService } from '../../services/gameManager/game-manager.service';
 import { Room } from '../../models/room/room';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-room',
@@ -12,8 +13,7 @@ export class CreateRoomComponent {
   categoriesNames: string[] = []
   form!: FormGroup
 
-  constructor(private gameManager: GameManagerService) { }
-
+  constructor(private gameManager: GameManagerService, private router: Router) { }
   createForm() {
     this.form = new FormGroup({
       userName: new FormControl(this.createAnonimousNickName()),
@@ -49,9 +49,12 @@ export class CreateRoomComponent {
 
   createRoom() {
     const roundsQuantity = this.form.get("selectRoundsQuantity")!.value
-    const playersQuantity = this.form.get('selectPlayersQuantity')?.value
-    const room = new Room(roundsQuantity, playersQuantity, this.categoriesNames)
-    this.gameManager.createRoom(room)
+    const playersQuantity = this.form.get('selectPlayersQuantity')!.value
+    const playerOwner = this.form.get('userName')!.value
+    const room = new Room(roundsQuantity, playersQuantity, playerOwner, this.categoriesNames)
+    this.gameManager.createRoom(room)/* .then(() => {
+      this.router.navigate(['/room'])
+    }) */
   }
 
   ngOnInit() {

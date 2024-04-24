@@ -1,7 +1,17 @@
 <button class="btn btn-primary mt-2" [routerLink]="['/create']">Criar Sala</button>
-
 <div class="mural">
+    @if (rooms) {
     @for (room of rooms; track room; let idx = $index) {
     <app-room-list-item [room]="room" [roomIndex]=idx></app-room-list-item>
+    }
+
+    }@else {<div class="card text-center" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title text-center">Não há sala(s) criada(s) ainda</h5>
+            <div class="modal-body">
+                <button class="btn btn-primary mt-2" [routerLink]="['/create']">Criar Sala</button>
+            </div>
+        </div>
+    </div>
     }
 </div>
