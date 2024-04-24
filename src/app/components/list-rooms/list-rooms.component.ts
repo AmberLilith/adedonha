@@ -8,7 +8,7 @@ import { GameManagerService } from '../../services/gameManager/game-manager.serv
   styleUrl: './list-rooms.component.css'
 })
 export class ListRoomsComponent {
-  rooms: Room[] = []
+  rooms!: Room[]
 
   constructor(private gameManager: GameManagerService) { }
   getRooms() {

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input, SimpleChanges, input } from '@angular/core';
 import { GameManagerService } from '../../services/gameManager/game-manager.service';
 import { Room } from '../../models/room/room';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-room',
@@ -8,17 +9,36 @@ import { Room } from '../../models/room/room';
   styleUrl: './room.component.css'
 })
 export class RoomComponent {
-  roomKey: string
   room!: Room
+  //private playersInTheRoomSubscription: Subscription | undefined
 
-  constructor(private gameManager: GameManagerService) {
-    this.roomKey = localStorage.getItem('createdRoomKey')!
-  }
+  constructor(private gameManager: GameManagerService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.gameManager.getRoom(this.roomKey).subscribe(room => {
+    const roomKey = this.activatedRoute.snapshot.paramMap.get('key')!
+    this.gameManager.getRoom(roomKey).subscribe(room => {
       this.room = room
-      console.log(this.room)
+      /* this.gameManager.getPlayers(this.room.key).subscribe(playersResponse => {
+        const players: Player[] = playersResponse
+        if (this.room.playersInTheRoom == this.room.playersQuantity) {
+          document.getElementById('waitingPlayers')!.style.display = 'none'
+          document.getElementById('game')!.style.display = 'block'
+        }
+      }) */
     })
   }
+
+  /* ngOnDestroy() {
+    if (this.playersInTheRoomSubscription) {
+      this.playersInTheRoomSubscription.unsubscribe();
+    }
+  } */
+
+
+  leaveRoom() {
+    this.gameManager.leaveRoom(this.room.key, 0).then(() => {
+      alert('cu')
+    })
+  }
+
 }

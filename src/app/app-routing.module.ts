@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreateRoomComponent } from './components/create-room/create-room.component';
 import { ListRoomsComponent } from './components/list-rooms/list-rooms.component';
-import { RoomListItemComponent } from './components/room-list-item/room-list-item.component';
+import { RoomComponent } from './components/room/room.component';
 
 const routes: Routes = [
   {
@@ -15,8 +15,8 @@ const routes: Routes = [
     component: CreateRoomComponent
   },
   {
-    path: 'room',
-    component: RoomListItemComponent
+    path: 'room/:key',
+    component: RoomComponent
   }
 
 ];
